@@ -1,9 +1,12 @@
 import React from 'react';
+import botao from './botao.module.scss';
 
-function  Button() {
+class Button extends React.Component {
+  render() {
     return (
-      <button>Click Me</button>
+      <button className={botao.botao}>Click Me</button>
     );
+  }
 }
 
 export default Button;
