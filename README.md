@@ -1,5 +1,5 @@
 # front-end
-React, Vue, Next, Nuxt, Remix
+VanillaJS, React, Vue, Next, Nuxt, Remix
 
-## BD / Orm
+## databases 
 GraphQL, Firebase, Postgres, prisma, typeOrm
