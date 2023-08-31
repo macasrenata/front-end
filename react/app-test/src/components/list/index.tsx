@@ -1,5 +1,6 @@
 import React from "react";
 import list from "./list.module.scss";
+import Item from "./Item";
 
 function List() {
   const tasks = [
@@ -20,12 +21,18 @@ function List() {
     <aside className={list.listaTarefas}>
       <h2>Classes</h2>
       <ul>
-        {tasks.map((task, index) => (
-          <li key={index} className={list.item}>
-            <h3>{task.name}</h3>
-            <span>{task.time}</span>
-          </li>
-        ))}
+        {tasks.map(
+          (
+            task,
+            index // map é um loop que percorre o array e retorna um novo array
+          ) => (
+            <Item
+              index={index} // key é um identificador único para cada elemento do array
+              task={task}
+              // {...task} // spread operator - pega todas as propriedades do objeto e passa como props
+            ></Item>
+          )
+        )}
       </ul>
     </aside>
   );
