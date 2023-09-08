@@ -1,16 +1,14 @@
+import { ITask } from "../../types/tasks";
 import list from "../list.module.scss";
 
-export function Item(props: { task: { name: string; time: string }; index: number }) {
-  const { task, index } = props;
+export default function Item({ name, time, selected, completed, id}: ITask) {
+  console.log("item atual:", {name, time, selected, completed, id});
   return (
     <li
-      key={index}
       className={list.item} // key é um identificador único para cada elemento do array
     >
-      <h3>{task.name}</h3>
-      <span>{task.time}</span>
+      <h3>{name}</h3>
+      <span>{time}</span>
     </li>
   );
 }
-
-export default Item;
