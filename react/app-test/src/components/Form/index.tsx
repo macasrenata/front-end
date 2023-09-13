@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../button";
+import Button from "../Button";
 import form from "./form.module.scss";
 import { ITask } from "../types/tasks";
 import { v4 as uuidv4 } from 'uuid';
@@ -17,17 +17,21 @@ import { v4 as uuidv4 } from 'uuid';
 
     saveTask(event: React.FormEvent<HTMLFormElement>) { // função que salva a tarefa no state do componente Form e recebe um evento do tipo React.FormEvent E um HTMLFormElement (que é o tipo do elemento que está sendo passado no evento)
       event.preventDefault(); // previne o comportamento padrão do form que é recarregar a página
-      this.props.setTasks( taskOld  => 
-         [...taskOld, 
+      this.props.setTasks(taskOld => 
+      [
+          ...taskOld,
           {
-          id: uuidv4(),
-          completed: false,
-          selected: false,
+            ...this.state,
+            id: uuidv4(),
+            completed: false,
+            selected: false,
           }
         ]
-      ); // setTasks é a função que altera o estado (useState)  em um array de tarefas (ITask)
+      );
+      // this.props.setTasks( // this.props é um objeto que guarda todas as props que o componente recebe
+      // setTasks é a função que altera o estado (useState)  em um array de tarefas (ITask)
       this.setState({ 
-        task: '', 
+        name: '', 
         time: '' 
       }); // seta o valor de task e time no state, neste caso o valor é uma string vazia pq queremos limpar o input
     };
@@ -41,9 +45,8 @@ import { v4 as uuidv4 } from 'uuid';
             type="text"
             name="task"
             value={this.state.name} // vai la no state e pega o valor de task
-            onChange={(event) => { // onChange é um evento que é disparado quando o valor do input muda
-              this.setState({ task: event.target.value }); // seta o valor de task no state, e o setState é uma função default do react, e event.target.value é o valor do input pego pelo evento do onChange pelo DOM
-            }}
+            onChange={event => this.setState({ ...this.state, name: event.target.value })}
+            // onChange é um evento que é disparado quando o valor do input muda
             id="task"
             placeholder="What do you want study?"
             required
