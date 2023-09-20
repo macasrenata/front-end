@@ -17,6 +17,23 @@ function App() {
       // utilizando ternario para verificar se o id da tarefa é igual ao id da tarefa selecionada
     })));
   } // função que recebe uma tarefa e seta ela no estado selectedTask
+
+  function handleCompletedTask() {
+    setSelectedTask(undefined);
+    if (selectedTask) {
+      setTasks(tasksBefore => tasksBefore.map(task =>  {
+        if (task.id === selectedTask.id) {
+          return {
+            ...task,
+            completed: true,
+            selected: false,
+          }
+        }
+        return task;
+      }));
+    }  
+  }
+  
   
   return (
     <div className={app.AppStyle}>
@@ -27,26 +44,10 @@ function App() {
       />
       <Cronometro 
       selected={selectedTask}
+      handlerCompletedTask={handleCompletedTask}
       />
     </div>
   );
 }
 
 export default App;
-
-
-  //  ([ // react atualiza o componente pq colocamos um novo item na lista (sendo reativo e nao imperativo como o DOM)
-  //   {
-  //     name: "React",
-  //     time: "10:00",
-  //   },
-  //   {
-  //     name: "English",
-  //     time: "11:00",
-  //   },
-  //   {
-  //     name: "Javascript",
-  //     time: "12:00",
-  //   },
-
-  // ]);
